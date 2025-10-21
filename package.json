@@ -9,7 +9,7 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "text": "module",
+    "type": "module",
     "dependencies": {
         "express": "^5.1.0",
         "nodemon": "^3.1.10"
