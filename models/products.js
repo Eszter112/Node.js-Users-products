@@ -16,9 +16,19 @@ export function findProductById(id) {
     return products.find((p) => p.id == id);
 }
 
-export function deleteProduct() {
+export function deleteProduct(id) {
+    const product = findProductById(id);
     const indexOf = products.indexOf(product);
     products.splice(indexOf, 1);
+
+    // return product;
 }
 
-export function updateProduct() {}
+export function updateProduct(updatedproduct) {
+    const product = findProductById(updatedproduct.id);
+
+    product.name = updatedproduct.name || product.name;
+    product.prix = updatedproduct.prix || product.prix;
+
+    return product;
+}

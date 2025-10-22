@@ -8,22 +8,44 @@ import express from "express"; //express est une bibloteque
 
 const app = express();
 const port = 3000;
-
-import {
-    addProductsController,
-    getAllProductsController,
-} from "./controllers/ProductsController.js";
-import { deleteProductController } from "./controllers/ProductsController.js"; // ✔️
-
 app.use(express.json());
-app.get("/products", getAllProductsController);
-app.post("/products", addProductsController);
-app.post("/products/:id", deleteProductController);
+// ********* Product *********
+import productRoutes from "./routes/productsRoute.js";
+app.use("/products", productRoutes);
 
-//prepara toi a recevoir des donnes en format json
+// ********* User *********
+
+import usersRoute from "./routes/usersRoute.js";
+app.use("/users", usersRoute);
+
+// ********* Login  *********
+import loginRoute from "./routes/loginRoute.js";
+app.use("/login", loginRoute);
+
 app.listen(port, () => {
     console.log(`server ok sur port ${port}`);
 });
+
+// import {
+//     getAllProductsController,
+//     addProductsController,
+//     deleteProductController,
+//     updateProductController,
+// } from "./controllers/ProductsController.js";
+
+// app.get("/products", getAllProductsController);
+// app.post("/products", addProductsController);
+// app.delete("/products/:id", deleteProductController);
+// app.put("/products", updateProductController);
+
+// ********* User *********
+// import {
+//     addUserController,
+//     getAllUsersController,
+// } from "./controllers/UsersController.js";
+
+// app.get("/users", getAllUsersController);
+// app.post("/users", addUserController);
 
 // let users = [
 //     { id: 1, name: "Lola", age: 26 },
