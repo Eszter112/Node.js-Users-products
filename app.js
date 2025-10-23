@@ -3,20 +3,29 @@
 // npm install nodemon
 // modifier le package.json => "type": "module"
 //npx nodemon app.js <=pr lancer la serveur
+import dotenv from "dotenv"; //bibliotheque dotenv pr gerer les variables d'enviroment
+import mongoose from "mongoose"; //bibliotheque pr mongoose
 
-import express from "express"; //express est une bibloteque
+dotenv.config(); //charge les variables depuis .env
+
+mongoose //connexion mongoDb Atlas
+    .connect(process.env.MONGODB_URI) //URI= adresse de la BDD
+    .then(() => console.log("MongoDB Atlas connected!"))
+    .catch((err) => console.error("Connection error", err));
+
+import express from "express"; //express est une biblotheque serveur web
 
 const app = express();
 const port = 3000;
 app.use(express.json());
 // ********* Product *********
 import productRoutes from "./routes/productsRoute.js";
-app.use("/products", productRoutes);
+app.use("/product", productRoutes);
 
 // ********* User *********
 
 import usersRoute from "./routes/usersRoute.js";
-app.use("/users", usersRoute);
+app.use("/user", usersRoute);
 
 // ********* Login  *********
 import loginRoute from "./routes/loginRoute.js";

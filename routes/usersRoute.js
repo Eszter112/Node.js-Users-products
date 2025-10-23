@@ -3,12 +3,15 @@ import { Router } from "express";
 import {
     getAllUsersController,
     addUserController,
+    deleteUserController,
+    updateUserController,
 } from "../controllers/UsersController.js";
-import { addProductsController } from "../controllers/ProductsController.js";
 
 const router = Router();
 
 router.get("/", getAllUsersController);
-router.post("/", addProductsController);
+router.post("/", addUserController);
+router.delete("/:id", deleteUserController);
+router.put("/:id", updateUserController);
 
 export default router;
